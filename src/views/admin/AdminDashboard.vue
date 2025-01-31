@@ -5,6 +5,7 @@
         <h2 class="sidebar-title">Admin Panel</h2>
         <router-link to="/admin/courses">📚 Manage Lessons</router-link>
         <router-link to="/admin/users">👥 Manage Users</router-link>
+        <router-link to="/admin/categories"> Manage Categories</router-link>
         <router-link to="/admin/stats"> Statistiques</router-link>
         <button class="logout-button" @click="logout">Logout</button>
       </aside>

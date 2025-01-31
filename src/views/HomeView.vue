@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- En-tête avec le logo et navigation -->
     <header>
       <div class="logo">
         <img src="@/assets/600.jpg" alt="Logo" />
@@ -11,7 +10,6 @@
       </nav>
     </header>
 
-    <!-- Section principale avec les catégories de cours -->
     <main>
       <section class="categories">
         <h2>Catégories des Cours</h2>
@@ -22,14 +20,13 @@
             class="category-item"
             @click="goToCourseDetail(course.id)"
           >
-            <img :src="course.image" :alt="course.name" />
+            <!-- <img :src="course.image" :alt="course.name" /> -->
             <h3>{{ course.name }}</h3>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
     <footer>
       <p>&copy; 2025 E-learning platform | All rights reserved.</p>
       <div class="footer-links">
@@ -41,56 +38,36 @@
 </template>
 
 <script>
+import { db } from '@/firebase'; // make sure to set up firebase.js properly
+import { collection, getDocs } from 'firebase/firestore';
 import { useRouter } from "vue-router";
 
 export default {
   name: "HomeView",
+  data() {
+    return {
+      courses: [],
+    };
+  },
+  async created() {
+    const coursesCollection = collection(db, 'categories');
+    const querySnapshot = await getDocs(coursesCollection);
+    querySnapshot.forEach((doc) => {
+      this.courses.push({ id: doc.id, ...doc.data() });
+    });
+  },
   setup() {
     const router = useRouter();
 
-    // Liste des cours avec images
-    const courses = [
-      {
-        id: 1,
-        name: "Développement Web",
-        image: "/images/web-development.jpg",
-      },
-      {
-        id: 2,
-        name: "Design",
-        image: "/images/design.jpg",
-      },
-      {
-        id: 3,
-        name: "Science",
-        image: "/images/science.jpg",
-      },
-      {
-        id: 4,
-        name: "Intelligence Artificielle",
-        image: "/images/ai.jpg",
-      },
-      {
-        id: 5,
-        name: "Affaires",
-        image: "/images/business.jpg",
-      },
-      {
-        id: 6,
-        name: "Langues",
-        image: "/images/languages.jpg",
-      },
-    ];
-
-    // Redirection vers les détails d'un cours
     const goToCourseDetail = (courseId) => {
-      router.push(`/course/${courseId}`);
+      router.push(`/detail/${courseId}`);
     };
 
-    return { courses, goToCourseDetail };
+    return { goToCourseDetail };
   },
 };
 </script>
+
 
 <style scoped>
 /* Style de la page */

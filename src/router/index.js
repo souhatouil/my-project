@@ -6,8 +6,7 @@ import SignUpView from "../views/SignUpView.vue";
 import LoginView from "../views/LoginView.vue";
 import StudentView from '@/views/StudentView.vue';
 import StudentProfile from "@/views/StudentProfile.vue";
-import TeacherView from '@/views/TeacherView.vue';
-import TeacherProfile from "@/views/TeacherProfile.vue"; 
+import TeacherView from '@/views/TeacherView.vue'; 
 // import AdminViewCopy from '@/views/admin/codePrincipal.vue';  // Supprimez la ligne dupliquée ci-dessous
 import UserManagement from "@/views/admin/UserManagement.vue";
 import CourseManagement from "@/views/admin/CourseManagement.vue";
@@ -16,6 +15,7 @@ import CommentManagement from "@/views/admin/CommentManagement.vue";
 import StatsReports from "@/views/admin/StatsReports.vue";
 import RoleSelectionView from '@/views/RoleSelectionView.vue';
 import AdminDashboard from '@/views/admin/AdminDashboard.vue';
+import manageCategories from "@/views/admin/manageCategories.vue";
 
 const routes = [
   { path: '/', redirect: '/home' },
@@ -31,7 +31,7 @@ const routes = [
   },
 
   {
-    path: "/course/:courseId",
+    path: "/course",
     name: "CourseDetail",
     component: CourseDetail,
   },
@@ -56,11 +56,7 @@ const routes = [
     name: "StudentProfile",
     component: StudentProfile, // Lien vers la vue de profil
   },
-  {
-    path: "/teacher/:teacherId",
-    name: "TeacherProfile",
-    component: TeacherProfile, // Lien vers la vue de profil
-  },
+
   { path: '/teacher', 
     name: 'Teacher', 
     component: TeacherView
@@ -76,6 +72,7 @@ const routes = [
   { path: "/admin/formations", component: FormationManagement },
   { path: "/admin/comments", component: CommentManagement },
   { path: "/admin/stats", component: StatsReports },
+  {path: '/admin/categories', name: 'manageCategories', component: manageCategories},
   // {
   //   path: "/admin",
   //   component: AdminDashboard,

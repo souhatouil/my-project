@@ -4,7 +4,7 @@
       <h1 class="title">Teacher Space:</h1>
       <button class="logout-button" @click="logout">Logout</button>
     </div>
-
+  
     <!-- Profile Section -->
     <div class="profile-section" v-if="profile">
       <h2>My Profile</h2>
@@ -16,7 +16,7 @@
         <li><strong>Date of Birth:</strong> {{ profile.dob }}</li>
       </ul>
     </div>
-
+  </div>
   <!-- <form @submit.prevent="addLesson" class="add-lesson-form">
   <input type="text" v-model="newLesson.title" placeholder="Lesson Title" required />
   <textarea v-model="newLesson.description" placeholder="Lesson Description" required></textarea>
@@ -140,7 +140,7 @@
     </div>
 
     <!-- comments Section -->
-    <!-- <div class="messages-section">
+    <div class="messages-section">
       <h2>Comments</h2>
       <div class="messages-list">
         <ul>
@@ -156,7 +156,7 @@
           placeholder="Type your message..." 
         />
         <button @click="sendMessage">Send</button>
-      </div>   -->
+      </div>   
   </div>
 </template>
 
@@ -230,7 +230,7 @@ export default {
         await addDoc(collection(db, "messages"), {
           text: this.newMessage,
           senderId: user.uid,
-          senderName: this.profile.username,
+          senderName: this.profile.firstName,
           timestamp: Date.now(),
         });
         this.newMessage = "";

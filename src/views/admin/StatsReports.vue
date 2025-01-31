@@ -12,11 +12,11 @@
         <p class="stat-number">{{ courses.length }}</p>
         <button @click="viewDetails('courses')">Voir détails</button>
       </div>
-      <div class="card">
+      <!-- <div class="card">
         <h3>Commentaires</h3>
         <p class="stat-number">{{ comments.length }}</p>
         <button @click="viewDetails('comments')">Voir détails</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -42,8 +42,8 @@ export default {
       this.courses = coursesSnapshot.docs;
 
       // Récupération des commentaires
-      const commentsSnapshot = await getDocs(collection(db, 'comments'));
-      this.comments = commentsSnapshot.docs;
+    //   const commentsSnapshot = await getDocs(collection(db, 'comments'));
+    //   this.comments = commentsSnapshot.docs;
     },
     viewDetails(type) {
       this.$router.push(`/admin/${type}`);
@@ -56,6 +56,7 @@ export default {
   mounted() {
     this.loadStats();
   }
+
 };
 </script>
 
